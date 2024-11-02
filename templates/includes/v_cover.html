@@ -15,10 +15,12 @@
                         </div>
 
                         <div class="text-holder"><h2 class="text-white">{{vendor.vendor_name}}</h2></span>
+                            {% if  vendor.user_profile.get_address %}
                             <div class="text">
                                 <i class="icon-location"></i>
                                 <p>{{vendor.user_profile.address}}</p>
                             </div>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
