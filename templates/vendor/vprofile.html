@@ -1,0 +1,240 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- Main Section Start -->
+<div class="main-section">
+    {% include 'includes/v_cover.html' %}
+    <div class="page-section account-header buyer-logged-in">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <!-- Load sidebar here  -->
+                    {% include 'includes/vendor_sidebar.html' %}
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                    <div class="user-dashboard loader-holder">
+                        <div class="user-holder">
+                            <!-- My Restaurants Form Start -->
+                                    <h5 class="text-uppercase"> Manage your restaurant</h5>
+									<form action="{% url 'vprofile' %}" method="POST" enctype="multipart/form-data">
+										{% csrf_token %}
+                                        <div class="form-fields-set">
+											<ul>
+												<li>
+													<div class="row">
+														<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+															<div class="restaurant-info">
+																<div class="img-holder">
+																	<ul class="foodbakery-gallery-holder">
+																		<li class="gal-img">
+																			<div class="drag-list">
+																				<div class="item-thumb">
+																					<img class="thumbnail" src="{{profile.get_profile_picture_url}}" alt="Profile Picture">
+																				</div>
+																			</div>
+																		</li>
+																	</ul>
+																</div>
+																<div class="text-holder">
+																	<label>Update Profile Picture</label>
+
+																	<div class="upload-gallery">
+																		{{profile_form.profile_picture}}
+																	</div>
+																</div>
+                                                                <label class=" text-danger">{{profile_form.profile_picture.errors}}</label>
+															</div>
+														</div>
+														<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+															<div class="restaurant-info">
+																<div class="img-holder">
+																	<ul class="foodbakery-gallery-holder">
+																		<li class="gal-img">
+																			<div class="drag-list">
+																				<div class="item-thumb">
+																					<img class="thumbnail" src="{{profile.get_cover_photo_url}}" alt="Cover Photo">
+																				</div>
+																			</div>
+																		</li>
+																	</ul>
+																</div>
+																<div class="text-holder">
+																	<label>Update Cover Photo</label>
+																	<div class="upload-gallery">
+																		{{profile_form.cover_photo}}
+																	</div>
+																</div>
+                                                                <label class=" text-danger">{{profile_form.cover_photo.errors}}</label>
+															</div>
+														</div>
+														<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+															<div class="restaurant-info">
+																<div class="img-holder">
+																	<ul class="foodbakery-gallery-holder">
+																		<li class="gal-img">
+																			<div class="drag-list">
+																				<div class="item-thumb">
+																					<img class="thumbnail" src="{{vendor.vendor_license.url}}" alt="Vendor License">
+																				</div>
+																			</div>
+																		</li>
+																	</ul>
+																</div>
+																<div class="text-holder">
+																	<label>Update License</label>
+																	<div class="upload-gallery">
+																		{{vendor_form.vendor_license}}
+																	</div>
+																	
+																</div>
+                                                                <label class=" text-danger">{{vendor_form.vendor_license.errors}}</label>
+															</div>
+														</div>
+														<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+															<div class="field-holder">
+																<label>Restaurant name *</label>
+																{{vendor_form.vendor_name}}
+                                                                <label class=" text-danger">{{vendor_form.vendor_name.errors}}</label>
+															</div>
+														</div>
+                                                        
+                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+															<div class="field-holder">
+																<label>Address*</label>
+																{{profile_form.address}}
+                                                                <small class="'text-muted float-right"> powered by Google</small>
+                                                                <label class=" text-danger">{{profile_form.address.errors}}</label>
+															</div>
+														</div>
+                                                        
+                                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+															<div class="field-holder">
+																<label>Country *</label>
+																{{profile_form.country}}
+                                                                <label class=" text-danger">{{profile_form.country.errors}}</label>
+															</div>
+														</div>
+                                                        
+                                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+															<div class="field-holder">
+																<label>State *</label>
+																{{profile_form.state}}
+                                                                <label class=" text-danger">{{profile_form.state.errors}}</label>
+															</div>
+														</div>
+                                                        
+                                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+															<div class="field-holder">
+																<label>City *</label>
+																{{profile_form.city}}
+                                                                <label class=" text-danger">{{profile_form.city.errors}}</label>
+															</div>
+														</div>
+                                                        
+                                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+															<div class="field-holder">
+																<label>Pincode *</label>
+																{{profile_form.pin_code}}
+                                                                <label class=" text-danger">{{profile_form.pin_code.errors}}</label>
+															</div>
+														</div>
+                                                        
+                                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+															<div class="field-holder">
+																<label>Latitude *</label>
+																{{profile_form.latitude}}
+                                                                <label class=" text-danger">{{profile_form.latitude.errors}}</label>
+															</div>
+														</div>
+                                                        
+                                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+															<div class="field-holder">
+																<label>Longitude*</label>
+																{{profile_form.longitude}}
+                                                                <label class=" text-danger">{{profile_form.longitude.errors}}</label>
+															</div>
+														</div>
+                                                        
+													</div>
+												</li>
+											</ul>
+											<div>
+												<div class="field-holder">
+													<div class="payment-holder input-button-loader">
+														<input type="submit" value="Update Restaurant">
+													</div>
+												</div>
+											</div>
+										</div>
+									</form>
+									<!-- My Restaurants Form End -->        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Main Section End -->
+<
+!-- JavaScript Code to implement the google autocomplete place functionality  -->
+<script src="https://maps.googleapis.com/maps/api/js?key={{GOOGLE_API_KEY}}&libraries=places&callback=initAutoComplete" async defer></script>
+<script>
+let autocomplete;
+function initAutoComplete(){
+    autocomplete= new google.maps.places.Autocomplete(
+        document.getElementById('id_address'),{
+            types: ['geocode', 'estabilishment'],
+            componentRestrictions: {'country': ['in']},
+        }
+    )
+    autocomplete.addListener('place_changed', onPlaceChanged);
+}
+
+function onPlaceChanged(){
+    var place= autocomplete.getPlace();
+    if(!place.geometry){
+        document.getElementById('id_address').placeholder= "Start Tying...";
+    }
+    else{
+        document.getElementById('id_address').innerHTML= place.name;
+    }
+
+    //Assign other address realted fields like state, country, pincode, latitude and longitude
+    var geocoder= new Google.maps.Geocoder()
+    geocoder.geocode({'address': address}, function(results, status){
+        if (status == google.maps.GeocoderStatus.OK) {
+            var latitude = results[0].geometry.location.lat();
+            var longitude = results[0].geometry.location.lng();
+            document.getElementById('id_latitude').value = latitude;
+            document.getElementById('id_longitude').value = longitude;        
+        }
+    });
+
+    for(var i=0; i<place.address_components.length; i++){
+        for(var j=0; j<place.address_components[i].types.length; j++){
+            //To get country
+            if(place.address_components[i].types[j]== 'country'){
+                document.getElementById('id_country').value = place.address_components[i].long_name;
+            }
+            //To get state
+            else if(place.address_components[i].types[j]== 'administrative_area_level_1'){
+                document.getElementById('id_state').value = place.address_components[i].long_name;
+            }
+            //To get city
+            else if(place.address_components[i].types[j]== 'locality'){
+                document.getElementById('id_city').value = place.address_components[i].long_name;
+            }
+            // To get pincode
+            if(place.address_components[i].types[j]== 'postal_code'){
+                document.getElementById('id_pincode').value = place.address_components[i].long_name;
+            }
+            else{
+                document.getElementById('id_pincode').value = '';
+            }
+        }
+    }
+}
+
+</script>
+{% endblock %}
