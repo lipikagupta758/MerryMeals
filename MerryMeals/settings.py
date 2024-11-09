@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts',
     'vendor',
+    'marketplace',
+    'django.contrib.gis' #for using point field in models
 ]
 
 MIDDLEWARE = [
@@ -68,6 +70,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'accounts.context_processors.get_vendor',
                 'accounts.context_processors.get_google_maps_api_key',
+                'marketplace.context_processors.get_cart_counter',
             ],
         },
     },
@@ -81,12 +84,12 @@ WSGI_APPLICATION = 'MerryMeals.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': os.environ.get('DB_NAME'),
         'USER': os.environ.get('DB_USER'),
         'PASSWORD': os.environ.get('DB_PASSWORD'),
         'HOST': os.environ.get('DB_HOST'),
-        'PORT':'5432'
+        'PORT':'5432',
     }
 }
 
@@ -151,3 +154,19 @@ DEFAULT_FROM_EMAIL= os.environ.get('DEFAULT_FROM_EMAIL')
 
 # To use google location api
 GOOGLE_MAPS_API_KEY = os.environ.get('GOOGLE_API_KEY')
+
+# For location based searching of restaurants by the user
+# For that install the postgis extension from application stack builder and then create a extension of postgis in your postgresql db
+# Download and paste the GDAL file in your project and add these below settings
+# os.environ['PATH'] = os.path.join(BASE_DIR, '.venvLibsite-packagesosgeo') + ';' + os.environ['PATH']
+# os.environ['PROJ_LIB'] = os.path.join(BASE_DIR, '.venvLibsite-packagesosgeodataproj') + ';' + os.environ['PATH']
+# GDAL_LIBRARY_PATH = os.path.join( BASE_DIR, '.venvLibsite-packagesosgeogdal.dll')
+
+# Update PATH environment variable to include the osgeo directory in your virtual environment
+os.environ['PATH'] = os.path.join(BASE_DIR, '.venv', 'Lib', 'site-packages', 'osgeo') + ';' + os.environ['PATH']
+
+# Set PROJ_LIB to point to the 'proj' directory inside 'osgeo' where projection data is located
+os.environ['PROJ_LIB'] = os.path.join(BASE_DIR, '.venv', 'Lib', 'site-packages', 'osgeo', 'data', 'proj')
+
+# Set GDAL_LIBRARY_PATH to point directly to 'gdal.dll'
+GDAL_LIBRARY_PATH = os.path.join(BASE_DIR, '.venv', 'Lib', 'site-packages', 'osgeo', 'gdal.dll')

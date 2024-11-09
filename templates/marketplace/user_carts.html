@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Main Section Start -->
+<div class="main-section">
+    <div class="page-section pt-5 ">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="tabs-holder horizontal">
+                        <ul class="stickynav-tabs nav nav-tabs">
+                            <li class="active"><a data-toggle="tab" href="#home"><i class="icon- icon-shopping-cart"></i>Your Cart</a></li>  
+                        </ul>
+                        <div class="tab-content">
+                            <div id="home" class="tab-pane in active">
+                                <div class="menu-itam-holder">
+                                    <div id="menu-item-list-6272" class="menu-itam-list">
+                                        <ul>
+                                            {% if restaurant_carts %}
+                                            {% for cart in restaurant_carts %}
+                                            <li>
+                                                <div class="image-holder h-100 w-10"> <img src="{{cart.vendor.user_profile.get_profile_picture_url}}" alt="image"></div>
+
+                                                <div class="text-holder pt-3">
+                                                    <h6>{{cart.vendor.vendor_name}}</h6>
+                                                    <a href="{% url 'vendor_detail' cart.vendor.vendor_slug %}">View Menu</a>
+
+
+                                                </div>
+                                                <div class="price-holder pt-4">
+                                                    <a href="{% url 'cart' cart.vendor.vendor_slug %}" class="btn btn-danger">View Cart</a>
+                                                </div>
+                                            </li>
+                                            {% endfor %}
+                                            {% else %}
+                                                <div class="text-center p-5"> Your Cart is Empty </div>
+                                            {% endif %}
+                                        </ul>        
+                                    </div>
+                                    {% for item in cart_items %}
+                                    <span id="qty-{{item.foodItem.id}}" class="item_qty d-none" data-qty="{{item.quantity}}"></span>
+                                    {% endfor %}
+                                </div>
+                            </div> 
+                            
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Main Section End -->
+
+{% endblock %}
