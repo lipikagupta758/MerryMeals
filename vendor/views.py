@@ -68,7 +68,9 @@ def add_category(request):
             cat_name= form.cleaned_data['category_name']
             category= form.save(commit=False)
             category.vendor= vendor
-            category.slug= slugify(cat_name)
+            category.save()
+            category.slug= slugify(cat_name)+'-'+ str(category.id)
+            category.save()
             form.save()
             messages.success(request, "Category has been added!")
             return redirect('menu_builder')

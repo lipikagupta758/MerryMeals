@@ -39,7 +39,10 @@
                                                     <span><small class="text-muted">{{vendor.user_profile.address}}</small></span>
                                                     {% endif %}
                                                 </h5>
-                                            </div>
+                                                   {% is source_location %}
+                                                    <span><small><b>{{vendor.kms}}</b>kms away </small></span>
+                                                    {% endif %}
+                                                </div>
                                             
                                         </div>
                                         <div class="list-option">
