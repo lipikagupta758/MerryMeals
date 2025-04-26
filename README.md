@@ -1,7 +1,3 @@
-Here’s a clean **README.md** you can directly use for your **Merry Meals** project:
-
----
-
 # MerryMeals
 
 MerryMeals is a food-related web application built using **Python Django** with a **PostgreSQL** (or **MySQL**) database, and a frontend designed in **HTML, CSS, and JavaScript**.
