@@ -1,6 +1,6 @@
 # MerryMeals
 
-MerryMeals is a food-related web application built using **Python Django** with a **PostgreSQL** (or **MySQL**) database, and a frontend designed in **HTML, CSS, and JavaScript**.
+MerryMeals is a Multi-Vendor Restaurant marketplace with location based search for finding nearby restaurants for users built using **Python Django** with a **PostgreSQL** (or **MySQL**) database, and a frontend designed in **HTML, CSS, and JavaScript**.
 
 ---
 
