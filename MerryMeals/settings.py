@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = 'django-insecure-x64qfzb^7ua2bc8bs@40_x$10k001=&)7b=vh&95#uu947(br='
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -158,9 +158,6 @@ GOOGLE_MAPS_API_KEY = os.environ.get('GOOGLE_API_KEY')
 # For location based searching of restaurants by the user
 # For that install the postgis extension from application stack builder and then create a extension of postgis in your postgresql db
 # Download and paste the GDAL file in your project and add these below settings
-# os.environ['PATH'] = os.path.join(BASE_DIR, '.venvLibsite-packagesosgeo') + ';' + os.environ['PATH']
-# os.environ['PROJ_LIB'] = os.path.join(BASE_DIR, '.venvLibsite-packagesosgeodataproj') + ';' + os.environ['PATH']
-# GDAL_LIBRARY_PATH = os.path.join( BASE_DIR, '.venvLibsite-packagesosgeogdal.dll')
 
 # Update PATH environment variable to include the osgeo directory in your virtual environment
 os.environ['PATH'] = os.path.join(BASE_DIR, '.venv', 'Lib', 'site-packages', 'osgeo') + ';' + os.environ['PATH']

@@ -1,14 +1,15 @@
 from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.urls import reverse
-from .forms import VendorRegisterationForm, CategoryForm, FoodItemForm
+from .forms import VendorRegisterationForm, CategoryForm, FoodItemForm, OpeningHoursForm
 from accounts.forms import UserProfileForm
 from django.shortcuts import get_object_or_404
 from accounts.models import UserProfile
-from .models import Vendor,Category, FoodItem
+from .models import Vendor,Category, FoodItem, OpeningHours
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
 from accounts.views import check_role_vendor
 from django.template.defaultfilters import slugify
+from accounts.context_processors import get_vendor
 
 @login_required(login_url='login')
 @user_passes_test(check_role_vendor)
@@ -169,6 +170,19 @@ def delete_foodItem(request, pk=None):
     foodItem.delete()
     messages.success(request, "Food Item has been successfully deleted!")
     return HttpResponseRedirect(reverse('foodItem_by_category', args=(category.id,)))
+
+def opening_hours(request):
+    vendor=Vendor.objects.get(user= request.user)
+    opening_hours= OpeningHours.objects.filter(vendor= vendor)
+    form= OpeningHoursForm()
+    context={
+        'form': form,
+        'opening_hours': opening_hours
+    }
+    return render(request, 'vendor/opening_hours.html', context)
+
+def add_opening_hours(request):
+    pass
 
 def orders(request):
     pass

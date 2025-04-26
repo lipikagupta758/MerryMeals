@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Vendor, Category, FoodItem
+from .models import Vendor, Category, FoodItem,OpeningHours
 
 # Register your models here.
 class VendorAdmin(admin.ModelAdmin):
@@ -23,3 +23,7 @@ class FoodItemAdmin(admin.ModelAdmin):
     list_filter=('is_available',)
 
 admin.site.register(FoodItem, FoodItemAdmin)
+
+class OpeningHoursAdmin(admin.ModelAdmin):
+    list_display= ('vendor', 'day', 'from_hour', 'to_hour')
+admin.site.register(OpeningHours, OpeningHoursAdmin)

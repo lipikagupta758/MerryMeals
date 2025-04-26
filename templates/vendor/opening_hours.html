@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- Main Section Start -->
+<script>
+    $('.add_timing').on('click', function(e){
+        e.preventDefault();
+        var day= document.getElementById('id_day').value
+        var from_hour= document.getElementById('id_from_hour').value
+        var to_hour= document.getElementById('id_to_hour').value
+        var is_closed= document.getElementById('id_is_closed').checked
+        var csrf_token= $('input[name=csrfmiddlewaretoken]').val()
+
+        console.log(day, from_hour, to_hour, csrf_token)
+    })
+</script>
+<div class="main-section">
+    {% include 'includes/v_cover.html' %}
+    <div class="page-section account-header buyer-logged-in">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <!-- Load sidebar here  -->
+                    {% include 'includes/vendor_sidebar.html' %}
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                    <div class="user-dashboard loader-holder">
+                        <div class="user-holder">
+                            <!-- My Restaurants Form Start -->
+                            <h5 class="text-uppercase"> Opening Hours </h5>
+                            <hr>
+                                <table class="table opening_hours" style="width: 500px; border: none;">
+                                    <tbody>
+                                        {% for hour in opening_hours %}
+                                            <tr>
+                                                <td><b>{{hour}}</b></td>
+                                                <td>{% if hour.is_closed %} Closed {% else %} {{hour.from_hour}}- {{hour.to_hour}} {% endif %}</td>
+                                                <td><a href=""> Remove </a></td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                                <form id=" opening_hours">
+                                    {% csrf_token %}
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            {{form.day}}
+                                        </div>
+                                        <div class="col-md-2">
+                                            {{form.from_hour}}
+                                        </div>
+                                        <div class="col-md-2">
+                                            {{form.to_hour}}
+                                        </div>
+                                        <div class="col-md-3">
+                                            {{form.is_closed}} Set as Closed
+                                        </div>
+                                        <div class="col-md-2">
+                                            <button class="btn btn-success add_timing"> Add Timing</button>
+                                        </div>
+                                    </div>
+                                </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Main Section End -->
+
+{% endblock %}
